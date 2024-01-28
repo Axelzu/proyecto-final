@@ -33,3 +33,53 @@ void mostrarCitas(struct Cita citas[], int numCitas) {
         printf("\n");
     }
 }
+int main() {
+    // se creo un arreglo de citas paraponer un maximo de citas
+    struct Cita citas[100];
+    int numCitas = 0;
+
+    //  esta variable  sirve para almacenar la opción del menú seleccionada por el usuario
+    int opcion;
+
+    do {
+        // Mostrar el menú en el codigo
+        printf("----- Menú -----\n");
+        printf("1. Agendar cita\n");
+        printf("2. Mostrar citas agendadas\n");
+        printf("3. Salir\n");
+        printf("Ingrese una opción: ");
+        scanf("%d", &opcion);
+
+        switch (opcion) {
+            case 1:
+                // Pedir al usuario que ingrese los detalles de la cita
+                struct Cita nuevaCita;
+                printf("Ingrese la fecha de la cita (dd mm aaaa): ");
+                scanf("%d %d %d", &nuevaCita.dia, &nuevaCita.mes, &nuevaCita.año);
+                printf("Ingrese la hora de la cita (hh mm): ");
+                scanf("%d %d", &nuevaCita.hora, &nuevaCita.minuto);
+                printf("Ingrese la especialidad: ");
+                scanf("%s", nuevaCita.especialidad);
+
+                if (citaDisponible(citas, numCitas, nuevaCita)) {
+                    citas[numCitas] = nuevaCita;
+                    numCitas++;
+                    printf("Cita agendada correctamente.\n");
+                } else {
+                    printf("La cita ya está reservada.\n");
+                }
+                break;
+            case 2:
+                mostrarCitas(citas, numCitas);
+                break;
+            case 3:
+                printf("Saliendo del programa...\n");
+                break;
+            default:
+                printf("Opción inválida. Por favor, ingrese una opción válida.\n");
+                break;
+        }
+    } while (opcion != 3);
+
+    return 0;
+}
