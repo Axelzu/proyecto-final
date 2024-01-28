@@ -22,3 +22,14 @@ int citaDisponible(struct Cita citas[], int numCitas, struct Cita nuevaCita) {
     }
     return 1; // La cita está disponible
 }
+// esta función sirve para mostrar las citas agendadas
+void mostrarCitas(struct Cita citas[], int numCitas) {
+    printf("\n");
+    printf("Citas agendadas:\n");
+    for (int i = 0; i < numCitas; i++) {
+        printf("Fecha: %d/%d/%d\n", citas[i].dia, citas[i].mes, citas[i].año);
+        printf("Hora: %d:%d\n", citas[i].hora, citas[i].minuto);
+        printf("Especialidad: %s\n", citas[i].especialidad);
+        printf("\n");
+    }
+}
